@@ -2,30 +2,22 @@
 
 namespace BrainbeanApps.ValueAnimation
 {
-    public class EaseInPoweredAnimation<T> : IValueAnimation<T>
+    public class EaseInPoweredAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
         /// <summary>
         /// The power.
         /// </summary>
         public readonly int Power;
 
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
-
         public EaseInPoweredAnimation(int power)
-            : this(power, ValueAnimation.ValueOperations.For<T>())
+            : this(ValueAnimation.ValueOperations.For<T>(), power)
         {
         }
 
-        public EaseInPoweredAnimation(int power, IValueOperations<T> valueOperations)
+        public EaseInPoweredAnimation(IValueOperations<T> valueOperations, int power)
+            : base(valueOperations)
         {
-            if (valueOperations == null)
-                throw new ArgumentNullException();
-
             Power = power;
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

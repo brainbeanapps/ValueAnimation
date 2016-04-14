@@ -5,7 +5,7 @@ namespace BrainbeanApps.ValueAnimation
     /// <summary>
     /// Implements the EaseInOut animation using EaseIn and EaseOut animations.
     /// </summary>
-    public class DualAnimation<T> : IValueAnimation<T>
+    public class DualAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
         /// <summary>
         /// The first animation.
@@ -17,29 +17,22 @@ namespace BrainbeanApps.ValueAnimation
         /// </summary>
         public readonly ValueAnimation<T> SecondAnimation;
 
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
-
         public DualAnimation(ValueAnimation<T> firstAnimation, ValueAnimation<T> secondAnimation)
-            : this(firstAnimation, secondAnimation, ValueAnimation.ValueOperations.For<T>())
+            : this(ValueAnimation.ValueOperations.For<T>(), firstAnimation, secondAnimation)
         {
         }
 
-        public DualAnimation(ValueAnimation<T> firstAnimation, ValueAnimation<T> secondAnimation,
-            IValueOperations<T> valueOperations)
+        public DualAnimation(IValueOperations<T> valueOperations, ValueAnimation<T> firstAnimation,
+            ValueAnimation<T> secondAnimation)
+            : base(valueOperations)
         {
             if (firstAnimation == null)
                 throw new ArgumentNullException();
             if (secondAnimation == null)
                 throw new ArgumentNullException();
-            if (valueOperations == null)
-                throw new ArgumentNullException();
 
             FirstAnimation = firstAnimation;
             SecondAnimation = secondAnimation;
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

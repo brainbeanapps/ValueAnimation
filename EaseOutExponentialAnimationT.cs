@@ -2,24 +2,16 @@
 
 namespace BrainbeanApps.ValueAnimation
 {
-    public class EaseOutExponentialAnimation<T> : IValueAnimation<T>
+    public class EaseOutExponentialAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
-
         public EaseOutExponentialAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())
         {
         }
 
         public EaseOutExponentialAnimation(IValueOperations<T> valueOperations)
+            : base(valueOperations)
         {
-            if (valueOperations == null)
-                throw new ArgumentNullException();
-
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

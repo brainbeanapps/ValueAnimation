@@ -2,24 +2,16 @@
 
 namespace BrainbeanApps.ValueAnimation
 {
-    public class EaseInCircularAnimation<T> : IValueAnimation<T>
+    public class EaseInCircularAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
-
         public EaseInCircularAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())
         {
         }
 
         public EaseInCircularAnimation(IValueOperations<T> valueOperations)
+            : base(valueOperations)
         {
-            if (valueOperations == null)
-                throw new ArgumentNullException();
-
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

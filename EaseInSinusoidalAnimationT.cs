@@ -2,24 +2,16 @@
 
 namespace BrainbeanApps.ValueAnimation
 {
-    public class EaseInSinusoidalAnimation<T> : IValueAnimation<T>
+    public class EaseInSinusoidalAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
-
         public EaseInSinusoidalAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())
         {
         }
 
         public EaseInSinusoidalAnimation(IValueOperations<T> valueOperations)
+            : base(valueOperations)
         {
-            if (valueOperations == null)
-                throw new ArgumentNullException();
-
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

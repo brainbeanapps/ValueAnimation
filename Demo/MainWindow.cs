@@ -68,7 +68,12 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseInQuintic<float>(), "Quintic EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutQuintic<float>(), "Quintic EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "Quintic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "Quintic EaseOutIn (float)")
+            ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "Quintic EaseOutIn (float)"),
+
+            ConstructAnimation(ValueAnimations.EaseInElastic<float>(), "Elastic EaseIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutElastic<float>(), "Elastic EaseOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "Elastic EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInElastic<float>(), "Elastic EaseOutIn (float)")
         };
 
         drawingArea.ExposeEvent += DrawingArea_ExposeEvent;

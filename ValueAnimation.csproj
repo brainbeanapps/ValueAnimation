@@ -53,6 +53,11 @@
     <Compile Include="EaseOutExponentialAnimationT.cs" />
     <Compile Include="MultiAnimationT.cs" />
     <Compile Include="DualAnimationT.cs" />
+    <Compile Include="EaseInElasticAnimationT.cs" />
+    <Compile Include="EaseOutElasticAnimationT.cs" />
+    <Compile Include="BaseElasticAnimationT.cs" />
+    <Compile Include="BaseAnimationT.cs" />
+    <Compile Include="ElasticAnimation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

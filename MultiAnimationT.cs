@@ -7,17 +7,12 @@ namespace BrainbeanApps.ValueAnimation
     /// <summary>
     /// Implements single animation using multiple nested animations
     /// </summary>
-    public class MultiAnimation<T> : IValueAnimation<T>
+    public class MultiAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
     {
         /// <summary>
         /// Nested animations.
         /// </summary>
         public readonly Tuple<float, ValueAnimation<T>>[] NestedAnimations;
-
-        /// <summary>
-        /// Operations for specific value type.
-        /// </summary>
-        public readonly IValueOperations<T> ValueOperations;
 
         public MultiAnimation(params ValueAnimation<T>[] nestedAnimations)
             : this(nestedAnimations, ValueAnimation.ValueOperations.For<T>())
@@ -30,17 +25,15 @@ namespace BrainbeanApps.ValueAnimation
         }
 
         public MultiAnimation(IEnumerable<ValueAnimation<T>> nestedAnimations, IValueOperations<T> valueOperations)
+            : base(valueOperations)
         {
             if (nestedAnimations == null)
                 throw new ArgumentNullException();
             if (nestedAnimations.Count() <= 0)
                 throw new ArgumentException();
-            if (valueOperations == null)
-                throw new ArgumentNullException();
 
             var length = 1.0f / nestedAnimations.Count();
             NestedAnimations = nestedAnimations.Select(x => new Tuple<float, ValueAnimation<T>>(length, x)).ToArray();
-            ValueOperations = valueOperations;
         }
 
         public MultiAnimation(IEnumerable<Tuple<float, ValueAnimation<T>>> nestedAnimations)
@@ -50,6 +43,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public MultiAnimation(IEnumerable<Tuple<float, ValueAnimation<T>>> nestedAnimations,
             IValueOperations<T> valueOperations)
+            : base(valueOperations)
         {
             if (nestedAnimations == null)
                 throw new ArgumentNullException();
@@ -59,11 +53,8 @@ namespace BrainbeanApps.ValueAnimation
                 throw new ArgumentException();
             if (nestedAnimations.Sum(x => x.Item1) > 1.0f)
                 throw new ArgumentException();
-            if (valueOperations == null)
-                throw new ArgumentNullException();
 
             NestedAnimations = nestedAnimations.ToArray();
-            ValueOperations = valueOperations;
         }
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)

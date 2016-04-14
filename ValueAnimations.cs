@@ -22,44 +22,44 @@ namespace BrainbeanApps.ValueAnimation
         #region Powered
         public static ValueAnimation<T> EaseInPowered<T>(int power)
         {
-            return EaseInPowered<T>(power, ValueOperations.For<T>());
+            return EaseInPowered<T>(ValueOperations.For<T>(), power);
         }
 
-        public static ValueAnimation<T> EaseInPowered<T>(int power, IValueOperations<T> valueOperations)
+        public static ValueAnimation<T> EaseInPowered<T>(IValueOperations<T> valueOperations, int power)
         {
-            return new EaseInPoweredAnimation<T>(power, valueOperations).GetValue;
+            return new EaseInPoweredAnimation<T>(valueOperations, power).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutPowered<T>(int power)
         {
-            return EaseOutPowered<T>(power, ValueOperations.For<T>());
+            return EaseOutPowered<T>(ValueOperations.For<T>(), power);
         }
 
-        public static ValueAnimation<T> EaseOutPowered<T>(int power, IValueOperations<T> valueOperations)
+        public static ValueAnimation<T> EaseOutPowered<T>(IValueOperations<T> valueOperations, int power)
         {
-            return new EaseOutPoweredAnimation<T>(power, valueOperations).GetValue;
+            return new EaseOutPoweredAnimation<T>(valueOperations, power).GetValue;
         }
 
         public static ValueAnimation<T> EaseInOutPowered<T>(int power)
         {
-            return EaseInOutPowered<T>(power, ValueOperations.For<T>());
+            return EaseInOutPowered<T>(ValueOperations.For<T>(), power);
         }
 
-        public static ValueAnimation<T> EaseInOutPowered<T>(int power, IValueOperations<T> valueOperations)
+        public static ValueAnimation<T> EaseInOutPowered<T>(IValueOperations<T> valueOperations, int power)
         {
-            return new DualAnimation<T>(EaseInPowered<T>(power, valueOperations),
-                EaseOutPowered<T>(power, valueOperations), valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInPowered<T>(valueOperations, power),
+                EaseOutPowered<T>(valueOperations, power)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInPowered<T>(int power)
         {
-            return EaseOutInPowered<T>(power, ValueOperations.For<T>());
+            return EaseOutInPowered<T>(ValueOperations.For<T>(), power);
         }
 
-        public static ValueAnimation<T> EaseOutInPowered<T>(int power, IValueOperations<T> valueOperations)
+        public static ValueAnimation<T> EaseOutInPowered<T>(IValueOperations<T> valueOperations, int power)
         {
-            return new DualAnimation<T>(EaseOutPowered<T>(power, valueOperations),
-                EaseInPowered<T>(power, valueOperations), valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutPowered<T>(valueOperations, power),
+                EaseInPowered<T>(valueOperations, power)).GetValue;
         }
         #endregion
 
@@ -71,7 +71,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInQuadratic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseInPowered(2, valueOperations);
+            return EaseInPowered(valueOperations, 2);
         }
 
         public static ValueAnimation<T> EaseOutQuadratic<T>()
@@ -81,7 +81,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutQuadratic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseOutPowered(2, valueOperations);
+            return EaseOutPowered(valueOperations, 2);
         }
 
         public static ValueAnimation<T> EaseInOutQuadratic<T>()
@@ -91,8 +91,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutQuadratic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInQuadratic<T>(valueOperations), EaseOutQuadratic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInQuadratic<T>(valueOperations),
+                EaseOutQuadratic<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInQuadratic<T>()
@@ -102,8 +102,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInQuadratic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutQuadratic<T>(valueOperations), EaseInQuadratic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutQuadratic<T>(valueOperations),
+                EaseInQuadratic<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -115,7 +115,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInCubic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseInPowered(3, valueOperations);
+            return EaseInPowered(valueOperations, 3);
         }
 
         public static ValueAnimation<T> EaseOutCubic<T>()
@@ -125,7 +125,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutCubic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseOutPowered(3, valueOperations);
+            return EaseOutPowered(valueOperations, 3);
         }
 
         public static ValueAnimation<T> EaseInOutCubic<T>()
@@ -135,8 +135,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutCubic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInCubic<T>(valueOperations), EaseOutCubic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInCubic<T>(valueOperations),
+                EaseOutCubic<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInCubic<T>()
@@ -146,8 +146,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInCubic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutCubic<T>(valueOperations), EaseInCubic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutCubic<T>(valueOperations),
+                EaseInCubic<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -159,7 +159,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInQuartic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseInPowered(4, valueOperations);
+            return EaseInPowered(valueOperations, 4);
         }
 
         public static ValueAnimation<T> EaseOutQuartic<T>()
@@ -169,7 +169,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutQuartic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseOutPowered(4, valueOperations);
+            return EaseOutPowered(valueOperations, 4);
         }
 
         public static ValueAnimation<T> EaseInOutQuartic<T>()
@@ -179,8 +179,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutQuartic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInQuartic<T>(valueOperations), EaseOutQuartic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInQuartic<T>(valueOperations),
+                EaseOutQuartic<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInQuartic<T>()
@@ -190,8 +190,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInQuartic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutQuartic<T>(valueOperations), EaseInQuartic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutQuartic<T>(valueOperations),
+                EaseInQuartic<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -203,7 +203,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInQuintic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseInPowered(5, valueOperations);
+            return EaseInPowered(valueOperations, 5);
         }
 
         public static ValueAnimation<T> EaseOutQuintic<T>()
@@ -213,7 +213,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutQuintic<T>(IValueOperations<T> valueOperations)
         {
-            return EaseOutPowered(5, valueOperations);
+            return EaseOutPowered(valueOperations, 5);
         }
 
         public static ValueAnimation<T> EaseInOutQuintic<T>()
@@ -223,8 +223,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutQuintic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInQuintic<T>(valueOperations), EaseOutQuintic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInQuintic<T>(valueOperations),
+                EaseOutQuintic<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInQuintic<T>()
@@ -234,8 +234,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInQuintic<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutQuintic<T>(valueOperations), EaseInQuintic<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutQuintic<T>(valueOperations),
+                EaseInQuintic<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -267,8 +267,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutSinusoidal<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInSinusoidal<T>(valueOperations), EaseOutSinusoidal<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInSinusoidal<T>(valueOperations),
+                EaseOutSinusoidal<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInSinusoidal<T>()
@@ -278,8 +278,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInSinusoidal<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutSinusoidal<T>(valueOperations), EaseInSinusoidal<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutSinusoidal<T>(valueOperations),
+                EaseInSinusoidal<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -311,8 +311,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutExponential<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInExponential<T>(valueOperations), EaseOutExponential<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInExponential<T>(valueOperations),
+                EaseOutExponential<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInExponential<T>()
@@ -322,8 +322,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInExponential<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutExponential<T>(valueOperations), EaseInExponential<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutExponential<T>(valueOperations),
+                EaseInExponential<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -355,8 +355,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseInOutCircular<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseInCircular<T>(valueOperations), EaseOutCircular<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseInCircular<T>(valueOperations),
+                EaseOutCircular<T>(valueOperations)).GetValue;
         }
 
         public static ValueAnimation<T> EaseOutInCircular<T>()
@@ -366,8 +366,8 @@ namespace BrainbeanApps.ValueAnimation
 
         public static ValueAnimation<T> EaseOutInCircular<T>(IValueOperations<T> valueOperations)
         {
-            return new DualAnimation<T>(EaseOutCircular<T>(valueOperations), EaseInCircular<T>(valueOperations),
-                valueOperations).GetValue;
+            return new DualAnimation<T>(valueOperations, EaseOutCircular<T>(valueOperations),
+                EaseInCircular<T>(valueOperations)).GetValue;
         }
         #endregion
 
@@ -375,6 +375,59 @@ namespace BrainbeanApps.ValueAnimation
         #endregion
 
         #region Elastic
+        public static ValueAnimation<T> EaseInElastic<T>(int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return EaseInElastic<T>(ValueOperations.For<T>(), oscillations, springiness);
+        }
+
+        public static ValueAnimation<T> EaseInElastic<T>(IValueOperations<T> valueOperations,
+            int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return new EaseInElasticAnimation<T>(valueOperations, oscillations, springiness).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutElastic<T>(int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return EaseOutElastic<T>(ValueOperations.For<T>(), oscillations, springiness);
+        }
+
+        public static ValueAnimation<T> EaseOutElastic<T>(IValueOperations<T> valueOperations,
+            int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return new EaseOutElasticAnimation<T>(valueOperations, oscillations, springiness).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseInOutElastic<T>(int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return EaseInOutElastic<T>(ValueOperations.For<T>(), oscillations, springiness);
+        }
+
+        public static ValueAnimation<T> EaseInOutElastic<T>(IValueOperations<T> valueOperations,
+            int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return new DualAnimation<T>(valueOperations, EaseInElastic<T>(valueOperations, oscillations, springiness),
+                EaseOutElastic<T>(valueOperations, oscillations, springiness)).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutInElastic<T>(int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return EaseOutInElastic<T>(ValueOperations.For<T>(), oscillations, springiness);
+        }
+
+        public static ValueAnimation<T> EaseOutInElastic<T>(IValueOperations<T> valueOperations,
+            int oscillations = ElasticAnimation.DefaultOscillations,
+            float springiness = ElasticAnimation.DefalutSpringiness)
+        {
+            return new DualAnimation<T>(valueOperations, EaseOutElastic<T>(valueOperations, oscillations, springiness),
+                EaseInElastic<T>(valueOperations, oscillations, springiness)).GetValue;
+        }
         #endregion
 
         #region Bounce
