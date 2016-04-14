@@ -58,6 +58,9 @@
     <Compile Include="BaseElasticAnimationT.cs" />
     <Compile Include="BaseAnimationT.cs" />
     <Compile Include="ElasticAnimation.cs" />
+    <Compile Include="EaseInBounceAnimationT.cs" />
+    <Compile Include="EaseOutBounceAnimationT.cs" />
+    <Compile Include="BaseBounceAnimationT.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

@@ -2,7 +2,7 @@
 
 namespace BrainbeanApps.ValueAnimation
 {
-    public class BaseElasticAnimation<T> : BaseAnimation<T>
+    public abstract class BaseElasticAnimation<T> : BaseAnimation<T>
     {
         /// <summary>
         /// Number of oscillations.
@@ -30,7 +30,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue, bool isAttenuation)
         {
-            if (isAttenuation)
+            if (!isAttenuation)
                 currentTime = duration - currentTime;
             var progress = currentTime / duration;
 
@@ -40,7 +40,7 @@ namespace BrainbeanApps.ValueAnimation
             var factor = (float)(f + 1.0f);
 
             var value = ValueOperations.ScaleByFactor(deltaValue, factor);
-            if (isAttenuation)
+            if (!isAttenuation)
                 value = ValueOperations.Subtract(deltaValue, value);
 
             return ValueOperations.Add(initialValue, value);

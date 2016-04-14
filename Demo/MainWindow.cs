@@ -72,6 +72,11 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "quintic-in-out"),
             ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "quintic-out-in"),
 
+            ConstructAnimation(ValueAnimations.EaseInBounce<float>(), "bounce-in"),
+            ConstructAnimation(ValueAnimations.EaseOutBounce<float>(), "bounce-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutBounce<float>(), "bounce-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInBounce<float>(), "bounce-out-in"),
+
             ConstructAnimation(ValueAnimations.EaseInElastic<float>(), "elastic-in"),
             ConstructAnimation(ValueAnimations.EaseOutElastic<float>(), "elastic-out"),
             ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "elastic-in-out"),

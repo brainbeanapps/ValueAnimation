@@ -431,6 +431,47 @@ namespace BrainbeanApps.ValueAnimation
         #endregion
 
         #region Bounce
+        public static ValueAnimation<T> EaseInBounce<T>()
+        {
+            return EaseInBounce<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseInBounce<T>(IValueOperations<T> valueOperations)
+        {
+            return new EaseInBounceAnimation<T>(valueOperations).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutBounce<T>()
+        {
+            return EaseOutBounce<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseOutBounce<T>(IValueOperations<T> valueOperations)
+        {
+            return new EaseOutBounceAnimation<T>(valueOperations).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseInOutBounce<T>()
+        {
+            return EaseInOutBounce<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseInOutBounce<T>(IValueOperations<T> valueOperations)
+        {
+            return new DualAnimation<T>(valueOperations, EaseInBounce<T>(valueOperations),
+                EaseOutBounce<T>(valueOperations)).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutInBounce<T>()
+        {
+            return EaseOutInBounce<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseOutInBounce<T>(IValueOperations<T> valueOperations)
+        {
+            return new DualAnimation<T>(valueOperations, EaseOutBounce<T>(valueOperations),
+                EaseInBounce<T>(valueOperations)).GetValue;
+        }
         #endregion
 
         #region Bezier
