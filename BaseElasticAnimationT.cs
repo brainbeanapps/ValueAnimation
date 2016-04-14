@@ -27,5 +27,13 @@ namespace BrainbeanApps.ValueAnimation
             Oscillations = oscillations;
             Springiness = springiness;
         }
+
+        public T GetValue(float currentTime, float duration, T initialValue, T deltaValue, bool isAttenuation)
+        {
+            //            var factor = (float)Math.Pow(currentTime / duration, Power);
+            //            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
+            //            return ValueOperations.Add(initialValue, value);
+            return default(T);
+        }
     }
 }

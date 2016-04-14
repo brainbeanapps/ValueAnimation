@@ -19,10 +19,7 @@ namespace BrainbeanApps.ValueAnimation
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)
         {
-//            var factor = (float)Math.Pow(currentTime / duration, Power);
-//            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
-//            return ValueOperations.Add(initialValue, value);
-            return default(T);
+            return base.GetValue(currentTime, duration, initialValue, deltaValue, true);
         }
     }
 }

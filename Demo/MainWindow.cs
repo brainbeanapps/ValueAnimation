@@ -6,11 +6,13 @@ using BrainbeanApps.ValueAnimation;
 
 public partial class MainWindow: Gtk.Window
 {
+    public const float Scale = 0.75f;
     public const int ValueSteps = 200;
     public const int VerticalSpacing = 48;
     public const int HorizontalSpacing = 16;
-    public const int AnimationAreaWidth = 160;
-    public const int AnimationAreaHeight = 120;
+    public const int AnimationAreaWidth = (int)(Scale * 160);
+    public const int AnimationAreaHeight = (int)(Scale * 120);
+    public const int TitleFontSize = (int)(Scale * 16);
 
     private struct Value<T>
     {
@@ -33,47 +35,47 @@ public partial class MainWindow: Gtk.Window
         Build();
 
         animations = new Animation[] {
-            ConstructAnimation(ValueAnimations.Linear<float>(), "Linear (float)"),
+            ConstructAnimation(ValueAnimations.Linear<float>(), "linear"),
 
-            ConstructAnimation(ValueAnimations.EaseInCircular<float>(), "Circular EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutCircular<float>(), "Circular EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutCircular<float>(), "Circular EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInCircular<float>(), "Circular EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInCircular<float>(), "circular-in"),
+            ConstructAnimation(ValueAnimations.EaseOutCircular<float>(), "circular-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutCircular<float>(), "circular-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInCircular<float>(), "circular-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInExponential<float>(), "Exponential EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutExponential<float>(), "Exponential EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutExponential<float>(), "Exponential EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInExponential<float>(), "Exponential EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInExponential<float>(), "exponential-in"),
+            ConstructAnimation(ValueAnimations.EaseOutExponential<float>(), "exponential-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutExponential<float>(), "exponential-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInExponential<float>(), "exponential-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInSinusoidal<float>(), "Sinusoidal EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutSinusoidal<float>(), "Sinusoidal EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutSinusoidal<float>(), "Sinusoidal EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInSinusoidal<float>(), "Sinusoidal EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInSinusoidal<float>(), "sinusoidal-in"),
+            ConstructAnimation(ValueAnimations.EaseOutSinusoidal<float>(), "sinusoidal-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutSinusoidal<float>(), "sinusoidal-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInSinusoidal<float>(), "sinusoidal-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInQuadratic<float>(), "Quadratic EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutQuadratic<float>(), "Quadratic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutQuadratic<float>(), "Quadratic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInQuadratic<float>(), "Quadratic EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInQuadratic<float>(), "quadratic-in"),
+            ConstructAnimation(ValueAnimations.EaseOutQuadratic<float>(), "quadratic-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutQuadratic<float>(), "quadratic-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuadratic<float>(), "quadratic-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInCubic<float>(), "Cubic EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutCubic<float>(), "Cubic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutCubic<float>(), "Cubic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInCubic<float>(), "Cubic EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInCubic<float>(), "cubic-in"),
+            ConstructAnimation(ValueAnimations.EaseOutCubic<float>(), "cubic-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutCubic<float>(), "cubic-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInCubic<float>(), "cubic-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInQuartic<float>(), "Quartic EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutQuartic<float>(), "Quartic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutQuartic<float>(), "Quartic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInQuartic<float>(), "Quartic EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInQuartic<float>(), "quartic-in"),
+            ConstructAnimation(ValueAnimations.EaseOutQuartic<float>(), "quartic-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutQuartic<float>(), "quartic-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuartic<float>(), "quartic-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInQuintic<float>(), "Quintic EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutQuintic<float>(), "Quintic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "Quintic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "Quintic EaseOutIn (float)"),
+            ConstructAnimation(ValueAnimations.EaseInQuintic<float>(), "quintic-in"),
+            ConstructAnimation(ValueAnimations.EaseOutQuintic<float>(), "quintic-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "quintic-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "quintic-out-in"),
 
-            ConstructAnimation(ValueAnimations.EaseInElastic<float>(), "Elastic EaseIn (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutElastic<float>(), "Elastic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "Elastic EaseInOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseOutInElastic<float>(), "Elastic EaseOutIn (float)")
+            ConstructAnimation(ValueAnimations.EaseInElastic<float>(), "elastic-in"),
+            ConstructAnimation(ValueAnimations.EaseOutElastic<float>(), "elastic-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "elastic-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInElastic<float>(), "elastic-out-in")
         };
 
         drawingArea.ExposeEvent += DrawingArea_ExposeEvent;
@@ -139,9 +141,9 @@ public partial class MainWindow: Gtk.Window
             var frame = new Rectangle(x, y, AnimationAreaWidth, AnimationAreaHeight);
 
             var graphLeft = frame.Left + 1;
-            var graphBottom = frame.Bottom - 1;
+            var graphBottom = frame.Bottom;
             var graphWidth = frame.Width - 2;
-            var graphHeight = frame.Height - 2;
+            var graphHeight = frame.Height - 1;
 
             var gcGraph = new Gdk.GC(gdkWindow);
             gcGraph.RgbFgColor = new Gdk.Color(0xFE, 0x80, 0xB9);
@@ -158,6 +160,7 @@ public partial class MainWindow: Gtk.Window
             gdkWindow.DrawRectangle(gcFrame, false, frame);
 
             var pangoTitleLayout = new Pango.Layout(pangoContext);
+            pangoTitleLayout.FontDescription = Pango.FontDescription.FromString("monospace condensed " + TitleFontSize);
             pangoTitleLayout.SetText(animation.Title);
             int titleWidth = -1;
             int titleHeight = -1;
