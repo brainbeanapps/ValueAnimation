@@ -1,57 +1,20 @@
-## https://github.com/github/gitignore/blob/master/Global/MonoDevelop.gitignore#User Specific
+## https://github.com/github/gitignore/blob/master/VisualStudio.gitignore (partial)
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+.vs/
+
+## https://github.com/github/gitignore/blob/master/Global/MonoDevelop.gitignore (partial)
 *.userprefs
 *.usertasks
 
-#Mono Project Files
-*.pidb
-*.resources
-test-results/
-
-## https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
-
+## https://github.com/github/gitignore/blob/master/Global/OSX.gitignore (partial)
 .DS_Store
-.AppleDouble
-.LSOverride
 
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-## https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
-
-# Windows image file caches
+## https://github.com/github/gitignore/blob/master/Global/Windows.gitignore (partial)
 Thumbs.db
-ehthumbs.db
-
-# Folder config file
 Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
