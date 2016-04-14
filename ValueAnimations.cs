@@ -372,6 +372,7 @@ namespace BrainbeanApps.ValueAnimation
         #endregion
 
         #region Back
+        //TODO: Add Back
         #endregion
 
         #region Elastic
@@ -475,6 +476,7 @@ namespace BrainbeanApps.ValueAnimation
         #endregion
 
         #region Bezier
+        //TODO: Add Bezier
         #endregion
     }
 }

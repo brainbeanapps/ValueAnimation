@@ -4,6 +4,8 @@ namespace BrainbeanApps.ValueAnimation
 {
     public abstract class BaseElasticAnimation<T> : BaseAnimation<T>
     {
+        //TODO: Add Bounces count and Bounciness
+
         /// <summary>
         /// Number of oscillations.
         /// </summary>
