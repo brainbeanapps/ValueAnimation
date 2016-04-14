@@ -23,13 +23,13 @@ namespace BrainbeanApps.ValueAnimation
         /// Gets the duration of the animation.
         /// </summary>
         /// <value>The duration, measured in seconds.</value>
-        float Duration { get; }
+        float Duration { get; set; }
 
         /// <summary>
         /// Gets the position of the animation.
         /// </summary>
         /// <value>The position, measured in seconds.</value>
-        float Position { get; }
+        float Position { get; set; }
 
         /// <summary>
         /// Gets the time since the animation start.

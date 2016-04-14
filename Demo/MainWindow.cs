@@ -13,6 +13,7 @@ public partial class MainWindow: Gtk.Window
     public const int AnimationAreaWidth = (int)(Scale * 160);
     public const int AnimationAreaHeight = (int)(Scale * 120);
     public const int TitleFontSize = (int)(Scale * 16);
+    public const int MarkerSize = (int)(Scale * 8);
 
     private struct Value<T>
     {
@@ -25,9 +26,11 @@ public partial class MainWindow: Gtk.Window
         public ValueAnimation<float> ValueAnimation { get; set; }
         public string Title { get; set; }
         public Value<float>[] Values { get; set; }
+        public Value<float> AnimatedValue { get; set; }
     }
 
-    private Animation[] animations;
+    private readonly Animation[] animations;
+    private readonly IValuesAnimator valuesAnimator;
 
     public MainWindow()
         : base(Gtk.WindowType.Toplevel)
@@ -82,6 +85,13 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "elastic-in-out"),
             ConstructAnimation(ValueAnimations.EaseOutInElastic<float>(), "elastic-out-in")
         };
+        valuesAnimator = new ValuesAnimator();
+        //TODO:
+//        valuesAnimator.AddAnimators(animations.Select(x => new ValueAnimator() {
+//            Duration = 2.0f,
+//            Animation = x.ValueAnimation
+//        }));
+        //valuesAnimator.StartThreadedBlah.
 
         drawingArea.ExposeEvent += DrawingArea_ExposeEvent;
     }
@@ -112,6 +122,7 @@ public partial class MainWindow: Gtk.Window
                 y = valueAnimation(valueStep * stepIdx, 1.0f, 0.0f, 1.0f)
             };
         }
+        animation.AnimatedValue = animation.Values[0];
 
         return animation;
     }
@@ -178,6 +189,19 @@ public partial class MainWindow: Gtk.Window
             gcFrameTitle.RgbFgColor = new Gdk.Color(128, 128, 128);
             gcFrameTitle.RgbBgColor = new Gdk.Color(0, 0, 0);
             gdkWindow.DrawLayout(gcFrameTitle, titleX, titleY, pangoTitleLayout);
+
+            var gcAnimation = new Gdk.GC(gdkWindow);
+            gcAnimation.RgbFgColor = new Gdk.Color(0, 0, 255);
+            gcAnimation.RgbBgColor = new Gdk.Color(0, 0, 0);
+            var currentPointX = graphLeft + (int)(animation.AnimatedValue.x * graphWidth); 
+            var currentPointY = graphBottom - (int)(animation.AnimatedValue.y * graphHeight);
+            var animationMarker = new Point[] {
+                new Point(currentPointX - MarkerSize, currentPointY),
+                new Point(currentPointX, currentPointY - MarkerSize),
+                new Point(currentPointX + MarkerSize, currentPointY),
+                new Point(currentPointX, currentPointY + MarkerSize)
+            };
+            gdkWindow.DrawPolygon(gcAnimation, true, animationMarker);
         }
     }
 }
