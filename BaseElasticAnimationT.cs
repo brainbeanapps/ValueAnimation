@@ -30,10 +30,16 @@ namespace BrainbeanApps.ValueAnimation
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue, bool isAttenuation)
         {
-            //            var factor = (float)Math.Pow(currentTime / duration, Power);
-            //            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
-            //            return ValueOperations.Add(initialValue, value);
-            return default(T);
+            if (!isAttenuation)
+                currentTime = duration - currentTime;
+
+            // TODO: calculate
+            var value = default(T);
+
+            if (!isAttenuation)
+                value = ValueOperations.Subtract(deltaValue, value);
+
+            return ValueOperations.Add(initialValue, value);
         }
     }
 }

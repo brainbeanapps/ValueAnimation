@@ -143,7 +143,7 @@ public partial class MainWindow: Gtk.Window
             var graphLeft = frame.Left + 1;
             var graphBottom = frame.Bottom;
             var graphWidth = frame.Width - 2;
-            var graphHeight = frame.Height - 1;
+            var graphHeight = frame.Height - 2;
 
             var gcGraph = new Gdk.GC(gdkWindow);
             gcGraph.RgbFgColor = new Gdk.Color(0xFE, 0x80, 0xB9);
