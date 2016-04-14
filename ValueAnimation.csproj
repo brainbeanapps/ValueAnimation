@@ -38,7 +38,6 @@
     <Compile Include="ValueAnimations.cs" />
     <Compile Include="IValueAnimationT.cs" />
     <Compile Include="ValueAnimationT.cs" />
-    <Compile Include="EaseInOutAnimationT.cs" />
     <Compile Include="ValueOperations.cs" />
     <Compile Include="IValueOperationsT.cs" />
     <Compile Include="Int32ValueOperations.cs" />
@@ -52,6 +51,8 @@
     <Compile Include="EaseOutSinusoidalAnimationT.cs" />
     <Compile Include="EaseInExponentialAnimationT.cs" />
     <Compile Include="EaseOutExponentialAnimationT.cs" />
+    <Compile Include="MultiAnimationT.cs" />
+    <Compile Include="DualAnimationT.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

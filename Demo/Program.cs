@@ -9,6 +9,7 @@ namespace Demo
         {
             Application.Init();
             var window = new MainWindow();
+            window.Title = "BrainbeanApps.ValueAnimation demo";
             window.Resize(640, 360);
             window.ShowAll();
             Application.Run();

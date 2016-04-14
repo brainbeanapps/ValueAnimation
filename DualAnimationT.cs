@@ -5,42 +5,40 @@ namespace BrainbeanApps.ValueAnimation
     /// <summary>
     /// Implements the EaseInOut animation using EaseIn and EaseOut animations.
     /// </summary>
-    public class EaseInOutAnimation<T> : IValueAnimation<T>
+    public class DualAnimation<T> : IValueAnimation<T>
     {
         /// <summary>
-        /// Gets the EaseIn animation.
+        /// The first animation.
         /// </summary>
-        /// <value>The EaseIn animation.</value>
-        public readonly ValueAnimation<T> EaseInAnimation;
+        public readonly ValueAnimation<T> FirstAnimation;
 
         /// <summary>
-        /// Gets the EaseOut animation.
+        /// The second animation.
         /// </summary>
-        /// <value>The EaseOut animation.</value>
-        public readonly ValueAnimation<T> EaseOutAnimation;
+        public readonly ValueAnimation<T> SecondAnimation;
 
         /// <summary>
         /// Operations for specific value type.
         /// </summary>
         public readonly IValueOperations<T> ValueOperations;
 
-        public EaseInOutAnimation(ValueAnimation<T> easeInAnimation, ValueAnimation<T> easeOutAnimation)
-            : this(easeInAnimation, easeOutAnimation, ValueAnimation.ValueOperations.For<T>())
+        public DualAnimation(ValueAnimation<T> firstAnimation, ValueAnimation<T> secondAnimation)
+            : this(firstAnimation, secondAnimation, ValueAnimation.ValueOperations.For<T>())
         {
         }
 
-        public EaseInOutAnimation(ValueAnimation<T> easeInAnimation, ValueAnimation<T> easeOutAnimation,
+        public DualAnimation(ValueAnimation<T> firstAnimation, ValueAnimation<T> secondAnimation,
             IValueOperations<T> valueOperations)
         {
-            if (easeInAnimation == null)
+            if (firstAnimation == null)
                 throw new ArgumentNullException();
-            if (easeOutAnimation == null)
+            if (secondAnimation == null)
                 throw new ArgumentNullException();
             if (valueOperations == null)
                 throw new ArgumentNullException();
 
-            EaseInAnimation = easeInAnimation;
-            EaseOutAnimation = easeOutAnimation;
+            FirstAnimation = firstAnimation;
+            SecondAnimation = secondAnimation;
             ValueOperations = valueOperations;
         }
 
@@ -50,10 +48,10 @@ namespace BrainbeanApps.ValueAnimation
             var halfDelta = ValueOperations.DivideByTwo(deltaValue);
 
             if (currentTime < halfDuration)
-                return EaseInAnimation(currentTime, halfDuration, initialValue, halfDelta);
+                return FirstAnimation(currentTime, halfDuration, initialValue, halfDelta);
             else
             {
-                return EaseOutAnimation(currentTime - halfDuration, halfDuration,
+                return SecondAnimation(currentTime - halfDuration, halfDuration,
                     ValueOperations.Add(initialValue, halfDelta), halfDelta);
             }
         }

@@ -6,7 +6,7 @@ using BrainbeanApps.ValueAnimation;
 
 public partial class MainWindow: Gtk.Window
 {
-    public const int ValueSteps = 100;
+    public const int ValueSteps = 200;
     public const int VerticalSpacing = 48;
     public const int HorizontalSpacing = 16;
     public const int AnimationAreaWidth = 160;
@@ -38,31 +38,37 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseInCircular<float>(), "Circular EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutCircular<float>(), "Circular EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutCircular<float>(), "Circular EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInCircular<float>(), "Circular EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInExponential<float>(), "Exponential EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutExponential<float>(), "Exponential EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutExponential<float>(), "Exponential EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInExponential<float>(), "Exponential EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInSinusoidal<float>(), "Sinusoidal EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutSinusoidal<float>(), "Sinusoidal EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutSinusoidal<float>(), "Sinusoidal EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInSinusoidal<float>(), "Sinusoidal EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInQuadratic<float>(), "Quadratic EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutQuadratic<float>(), "Quadratic EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutQuadratic<float>(), "Quadratic EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuadratic<float>(), "Quadratic EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInCubic<float>(), "Cubic EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutCubic<float>(), "Cubic EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutCubic<float>(), "Cubic EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInCubic<float>(), "Cubic EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInQuartic<float>(), "Quartic EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutQuartic<float>(), "Quartic EaseOut (float)"),
             ConstructAnimation(ValueAnimations.EaseInOutQuartic<float>(), "Quartic EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuartic<float>(), "Quartic EaseOutIn (float)"),
 
             ConstructAnimation(ValueAnimations.EaseInQuintic<float>(), "Quintic EaseIn (float)"),
             ConstructAnimation(ValueAnimations.EaseOutQuintic<float>(), "Quintic EaseOut (float)"),
-            ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "Quintic EaseInOut (float)")
-
+            ConstructAnimation(ValueAnimations.EaseInOutQuintic<float>(), "Quintic EaseInOut (float)"),
+            ConstructAnimation(ValueAnimations.EaseOutInQuintic<float>(), "Quintic EaseOutIn (float)")
         };
 
         drawingArea.ExposeEvent += DrawingArea_ExposeEvent;
