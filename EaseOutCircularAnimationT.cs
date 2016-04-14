@@ -28,7 +28,7 @@ namespace BrainbeanApps.ValueAnimation
             factor -= 1.0f;
             factor = (float)Math.Sqrt(1.0f - factor*factor);
 
-            var value = ValueOperations.MultiplyBySingle(deltaValue, factor);
+            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
             return ValueOperations.Add(initialValue, value);
         }
     }

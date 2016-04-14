@@ -7,6 +7,7 @@ namespace BrainbeanApps.ValueAnimation
     /// </summary>
     public static class ValueAnimations
     {
+        #region Linear
         public static ValueAnimation<T> Linear<T>()
         {
             return Linear<T>(ValueOperations.For<T>());
@@ -16,6 +17,7 @@ namespace BrainbeanApps.ValueAnimation
         {
             return new LinearAnimation<T>(valueOperations).GetValue;
         }
+        #endregion
 
         #region Powered
         public static ValueAnimation<T> EaseInPowered<T>(int power)

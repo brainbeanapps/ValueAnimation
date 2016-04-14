@@ -14,14 +14,9 @@ namespace BrainbeanApps.ValueAnimation
             return l - r;
         }
 
-        public Int32 MultiplyBySingle(Int32 value, float factor)
+        public Int32 ScaleByFactor(Int32 value, float factor)
         {
             return (Int32)(value * factor);
-        }
-
-        public Int32 DivideByTwo(Int32 value)
-        {
-            return value / 2;
         }
     }
 }

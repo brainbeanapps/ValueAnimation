@@ -31,7 +31,7 @@ namespace BrainbeanApps.ValueAnimation
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)
         {
             var factor = 1.0f - (float)Math.Pow(1.0f - currentTime / duration, Power);
-            var value = ValueOperations.MultiplyBySingle(deltaValue, factor);
+            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
             return ValueOperations.Add(initialValue, value);
         }
     }

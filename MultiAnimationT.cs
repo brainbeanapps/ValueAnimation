@@ -85,8 +85,8 @@ namespace BrainbeanApps.ValueAnimation
             var nestedCurrentTime = currentTime - playedNestedAnimations * duration;
             var nestedDuration = nestedAnimation.Item1 * duration;
             var nestedInitialValue = ValueOperations.Add(initialValue,
-                ValueOperations.MultiplyBySingle(deltaValue, playedNestedAnimations));
-            var nestedDeltaValue = ValueOperations.MultiplyBySingle(deltaValue, nestedAnimation.Item1);
+                ValueOperations.ScaleByFactor(deltaValue, playedNestedAnimations));
+            var nestedDeltaValue = ValueOperations.ScaleByFactor(deltaValue, nestedAnimation.Item1);
             return nestedAnimation.Item2(nestedCurrentTime, nestedDuration, nestedInitialValue, nestedDeltaValue);
         }
     }

@@ -45,7 +45,7 @@ namespace BrainbeanApps.ValueAnimation
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)
         {
             var halfDuration = 0.5f * duration;
-            var halfDelta = ValueOperations.DivideByTwo(deltaValue);
+            var halfDelta = ValueOperations.ScaleByFactor(deltaValue, 0.5f);
 
             if (currentTime < halfDuration)
                 return FirstAnimation(currentTime, halfDuration, initialValue, halfDelta);

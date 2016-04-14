@@ -27,7 +27,7 @@ namespace BrainbeanApps.ValueAnimation
             var factor = currentTime / duration;
             factor = (float)Math.Sin(factor * 0.5f * Math.PI);
 
-            var value = ValueOperations.MultiplyBySingle(deltaValue, factor);
+            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
             return ValueOperations.Add(initialValue, value);
         }
     }

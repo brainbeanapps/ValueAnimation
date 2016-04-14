@@ -14,14 +14,9 @@ namespace BrainbeanApps.ValueAnimation
             return l - r;
         }
 
-        public Single MultiplyBySingle(Single value, float factor)
+        public Single ScaleByFactor(Single value, float factor)
         {
             return value * factor;
-        }
-
-        public Single DivideByTwo(Single value)
-        {
-            return value * 0.5f;
         }
     }
 }
