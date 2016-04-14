@@ -21,7 +21,7 @@ namespace BrainbeanApps.ValueAnimation
         {
             if (oscillations < 0)
                 throw new ArgumentException();
-            if (springiness < 0.0f)
+            if (springiness <= 0.0f)
                 throw new ArgumentException();
 
             Oscillations = oscillations;
@@ -30,13 +30,17 @@ namespace BrainbeanApps.ValueAnimation
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue, bool isAttenuation)
         {
-            if (!isAttenuation)
+            if (isAttenuation)
                 currentTime = duration - currentTime;
+            var progress = currentTime / duration;
 
-            // TODO: calculate
-            var value = default(T);
+            var p = duration / Springiness;
+            var s = p / (Oscillations + 1);
+            var f = Math.Pow(2, -10.0f * progress) * Math.Sin((progress * duration - s) * (2 * Math.PI) / p);
+            var factor = (float)(f + 1.0f);
 
-            if (!isAttenuation)
+            var value = ValueOperations.ScaleByFactor(deltaValue, factor);
+            if (isAttenuation)
                 value = ValueOperations.Subtract(deltaValue, value);
 
             return ValueOperations.Add(initialValue, value);

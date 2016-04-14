@@ -59,13 +59,13 @@ namespace BrainbeanApps.ValueAnimation
 
         public T GetValue(float currentTime, float duration, T initialValue, T deltaValue)
         {
-            var position = currentTime / duration;
+            var progress = currentTime / duration;
             int nestedAnimationIndex = 0;
             var playedNestedAnimations = 0.0f;
             for (; nestedAnimationIndex < NestedAnimations.Length; nestedAnimationIndex++)
             {
                 var length = NestedAnimations[nestedAnimationIndex].Item1;
-                if (position <= playedNestedAnimations + length)
+                if (progress <= playedNestedAnimations + length)
                     break;
                 playedNestedAnimations += length;
             }
