@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public abstract class BaseBounceAnimation<T> : BaseAnimation<T>
+        where T : struct, IComparable
     {
         public BaseBounceAnimation(IValueOperations<T> valueOperations)
             : base(valueOperations)

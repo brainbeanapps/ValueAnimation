@@ -24,6 +24,7 @@ namespace BrainbeanApps.ValueAnimation
         /// </summary>
         /// <typeparam name="T">Type in the IValueOperations<T> instance.</typeparam>
         public static IValueOperations<T> For<T>()
+            where T : struct, IComparable
         {
             lock (register)
             {
@@ -40,6 +41,7 @@ namespace BrainbeanApps.ValueAnimation
         /// <param name="valueOperations">Value operations.</param>
         /// <typeparam name="T">Type in the IValueOperations<T> instance.</typeparam>
         public static void RegisterFor<T>(IValueOperations<T> valueOperations)
+            where T : struct, IComparable
         {
             if (valueOperations == null)
                 throw new ArgumentNullException();
@@ -62,6 +64,7 @@ namespace BrainbeanApps.ValueAnimation
         /// </summary>
         /// <typeparam name="T">Type in the IValueOperations<T> instance.</typeparam>
         public static void UnregisterFor<T>()
+            where T : struct, IComparable
         {
             lock (register)
             {

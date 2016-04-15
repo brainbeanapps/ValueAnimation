@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public abstract class BaseElasticAnimation<T> : BaseAnimation<T>
+        where T : struct, IComparable
     {
         //TODO: Add Bounces count and Bounciness
 

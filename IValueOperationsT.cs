@@ -6,6 +6,7 @@ namespace BrainbeanApps.ValueAnimation
     /// Defines math operations used by animator.
     /// </summary>
     public interface IValueOperations<T>
+        where T : struct, IComparable
     {
         /// <summary>
         /// Add the specified l and r.

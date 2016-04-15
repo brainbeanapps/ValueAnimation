@@ -6,6 +6,7 @@ namespace BrainbeanApps.ValueAnimation
     /// Implements the EaseInOut animation using EaseIn and EaseOut animations.
     /// </summary>
     public class DualAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         /// <summary>
         /// The first animation.

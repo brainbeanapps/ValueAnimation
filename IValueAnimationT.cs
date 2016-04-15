@@ -6,6 +6,7 @@ namespace BrainbeanApps.ValueAnimation
     /// Defines method to obtain value from animation.
     /// </summary>
     public interface IValueAnimation<T>
+        where T : struct, IComparable
     {
         /// <summary>
         /// Gets the value at specified time.

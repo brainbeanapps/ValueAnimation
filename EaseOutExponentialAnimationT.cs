@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public class EaseOutExponentialAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         public EaseOutExponentialAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())

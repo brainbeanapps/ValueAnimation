@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public class EaseOutCircularAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         public EaseOutCircularAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())

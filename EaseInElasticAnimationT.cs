@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public class EaseInElasticAnimation<T> : BaseElasticAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         public EaseInElasticAnimation(int oscillations = ElasticAnimation.DefaultOscillations,
             float springiness = ElasticAnimation.DefalutSpringiness)

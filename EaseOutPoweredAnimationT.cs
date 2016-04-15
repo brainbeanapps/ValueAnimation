@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public class EaseOutPoweredAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         /// <summary>
         /// The power.

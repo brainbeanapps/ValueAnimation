@@ -8,6 +8,7 @@ namespace BrainbeanApps.ValueAnimation
     /// Implements single animation using multiple nested animations
     /// </summary>
     public class MultiAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         /// <summary>
         /// Nested animations.

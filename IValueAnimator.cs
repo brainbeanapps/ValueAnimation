@@ -14,15 +14,9 @@ namespace BrainbeanApps.ValueAnimation
         float Delay { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether the animation is running.
+        /// Gets or sets the duration.
         /// </summary>
-        /// <value><c>true</c> if the animation is running; otherwise, <c>false</c>.</value>
-        bool IsRunning { get; }
-
-        /// <summary>
-        /// Gets the duration of the animation.
-        /// </summary>
-        /// <value>The duration, measured in seconds.</value>
+        /// <value>The duration.</value>
         float Duration { get; set; }
 
         /// <summary>
@@ -32,10 +26,16 @@ namespace BrainbeanApps.ValueAnimation
         float Position { get; set; }
 
         /// <summary>
-        /// Gets the time since the animation start.
+        /// Gets or sets a value indicating whether this instance is paused.
         /// </summary>
-        /// <value>The time since the animation start, measured in seconds.</value>
-        float TimeSinceStart { get; }
+        /// <value><c>true</c> if this instance is paused; otherwise, <c>false</c>.</value>
+        bool IsPaused { get; set; }
+
+        /// <summary>
+        /// Gets the time passed.
+        /// </summary>
+        /// <value>The time passed.</value>
+        float TimePassed { get; }
 
         /// <summary>
         /// Gets a value indicating whether the animation is completed.
@@ -44,51 +44,42 @@ namespace BrainbeanApps.ValueAnimation
         bool IsCompleted { get; }
 
         /// <summary>
-        /// Occurs when the animation is started.
+        /// Process the animation using the specified deltaTime.
         /// </summary>
-        event EventHandler Started;
+        /// <param name="deltaTime">Delta time.</param>
+        void Process(float deltaTime);
 
         /// <summary>
-        /// Occurs when the animation is suspended.
+        /// Reset this instance.
         /// </summary>
-        event EventHandler Suspended;
+        void Reset();
 
-        /// <summary>
-        /// Occurs when the animation is resumed.
-        /// </summary>
-        event EventHandler Resumed;
+        //        /// <summary>
+//        /// Occurs when the animation is started.
+//        /// </summary>
+//        event EventHandler<ValueAnimatorEventArgs> StartedEvent;
 
-        /// <summary>
-        /// Occurs when the animation is completed.
-        /// </summary>
-        event EventHandler Completed;
+//        /// <summary>
+//        /// Occurs when the animation is suspended.
+//        /// </summary>
+//        event EventHandler Suspended;
+//
+//        /// <summary>
+//        /// Occurs when the animation is resumed.
+//        /// </summary>
+//        event EventHandler Resumed;
+//
+
+//
 
         /// <summary>
         /// Occurs when the animation is updated.
         /// </summary>
-        event EventHandler Updated;
+        event EventHandler UpdatedEvent;
 
         /// <summary>
-        /// Suspend the animation.
+        /// Occurs when the animation is completed.
         /// </summary>
-        void Suspend();
-
-        /// <summary>
-        /// Resume the animation.
-        /// </summary>
-        void Resume();
-
-        /// <summary>
-        /// Restart the animation.
-        /// </summary>
-        void Restart();
-
-        /// <summary>
-        /// Gets or sets the object that contains data about the animation.
-        /// </summary>
-        /// <value>An Object that contains data about the animation. The default is null.</value>
-        object Tag { get; set; }
-
-        // type of animation (function?)
+        event EventHandler CompletedEvent;
     }
 }

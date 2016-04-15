@@ -3,6 +3,8 @@ using System.Linq;
 using Gtk;
 using Gdk;
 using BrainbeanApps.ValueAnimation;
+using System.Threading;
+using System.Diagnostics;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -14,8 +16,10 @@ public partial class MainWindow: Gtk.Window
     public const int AnimationAreaHeight = (int)(Scale * 120);
     public const int TitleFontSize = (int)(Scale * 16);
     public const int MarkerSize = (int)(Scale * 8);
+    public const int AnimationLength = 2000;
 
     private struct Value<T>
+        where T : struct, IComparable
     {
         public T x;
         public T y;
@@ -30,7 +34,9 @@ public partial class MainWindow: Gtk.Window
     }
 
     private readonly Animation[] animations;
-    private readonly IValuesAnimator valuesAnimator;
+    private readonly Stopwatch valueAnimatorsStopwatch;
+    private readonly IValueAnimator[] valueAnimators;
+    private readonly Timer animationTimer;
 
     public MainWindow()
         : base(Gtk.WindowType.Toplevel)
@@ -85,15 +91,12 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseInOutElastic<float>(), "elastic-in-out"),
             ConstructAnimation(ValueAnimations.EaseOutInElastic<float>(), "elastic-out-in")
         };
-        valuesAnimator = new ValuesAnimator();
-        //TODO:
-//        valuesAnimator.AddAnimators(animations.Select(x => new ValueAnimator() {
-//            Duration = 2.0f,
-//            Animation = x.ValueAnimation
-//        }));
-        //valuesAnimator.StartThreadedBlah.
-
+        valueAnimatorsStopwatch = Stopwatch.StartNew();
+        valueAnimators = animations.Select(x => CreateValueAnimator(x)).ToArray();
+        animationTimer = new Timer(UpdateAnimation, null, 0, 60);
         drawingArea.ExposeEvent += DrawingArea_ExposeEvent;
+
+        this.ResizeMode = ResizeMode.Queue;
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -104,7 +107,10 @@ public partial class MainWindow: Gtk.Window
         
     void DrawingArea_ExposeEvent(object o, ExposeEventArgs args)
     {
-        DrawAnimations(drawingArea);
+        lock (animations)
+        {
+            DrawAnimations(drawingArea);
+        }
     }
 
     static Animation ConstructAnimation(ValueAnimation<float> valueAnimation, string title)
@@ -125,6 +131,33 @@ public partial class MainWindow: Gtk.Window
         animation.AnimatedValue = animation.Values[0];
 
         return animation;
+    }
+
+    static IValueAnimator CreateValueAnimator(Animation animation)
+    {
+        var valueAnimator = new ValueAnimator<float>() {
+            Duration = 1.0f,
+            Animation = animation.ValueAnimation,
+            InitialValue = 0.0f,
+            DeltaValue = 1.0f
+        };
+        valueAnimator.UpdatedEvent += (sender, e) => animation.AnimatedValue = new Value<float>() {
+            x = valueAnimator.Position / valueAnimator.Duration, y = valueAnimator.CurrentValue.Value };
+        valueAnimator.CompletedEvent += (sender, e) => valueAnimator.Reset();
+        return valueAnimator;
+    }
+
+    void UpdateAnimation(object state)
+    {
+        lock (animations)
+        {
+            float deltaTime = valueAnimatorsStopwatch.ElapsedMilliseconds / 1000.0f;
+            valueAnimatorsStopwatch.Restart();
+            foreach (var valueAnimator in valueAnimators)
+                valueAnimator.Process(deltaTime);
+        }
+
+        drawingArea.QueueDraw();
     }
 
     void DrawAnimations(Gtk.Widget gtkWidget)

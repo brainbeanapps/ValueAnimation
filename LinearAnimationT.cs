@@ -3,6 +3,7 @@
 namespace BrainbeanApps.ValueAnimation
 {
     public class LinearAnimation<T> : BaseAnimation<T>, IValueAnimation<T>
+        where T : struct, IComparable
     {
         public LinearAnimation()
             : this(ValueAnimation.ValueOperations.For<T>())
