@@ -61,6 +61,9 @@
     <Compile Include="BaseBounceAnimationT.cs" />
     <Compile Include="IValueAnimatorT.cs" />
     <Compile Include="ValueAnimator.cs" />
+    <Compile Include="EaseInBackAnimationT.cs" />
+    <Compile Include="EaseOutBackAnimationT.cs" />
+    <Compile Include="BaseBackAnimationT.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

@@ -438,7 +438,55 @@ namespace BrainbeanApps.ValueAnimation
         #endregion
 
         #region Back
-        //TODO: Add Back
+        public static ValueAnimation<T> EaseInBack<T>()
+            where T : struct, IComparable
+        {
+            return EaseInBack<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseInBack<T>(IValueOperations<T> valueOperations)
+            where T : struct, IComparable
+        {
+            return new EaseInBackAnimation<T>(valueOperations).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutBack<T>()
+            where T : struct, IComparable
+        {
+            return EaseOutBack<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseOutBack<T>(IValueOperations<T> valueOperations)
+            where T : struct, IComparable
+        {
+            return new EaseOutBackAnimation<T>(valueOperations).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseInOutBack<T>()
+            where T : struct, IComparable
+        {
+            return EaseInOutBack<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseInOutBack<T>(IValueOperations<T> valueOperations)
+            where T : struct, IComparable
+        {
+            return new DualAnimation<T>(valueOperations, EaseInBack<T>(valueOperations),
+                EaseOutBack<T>(valueOperations)).GetValue;
+        }
+
+        public static ValueAnimation<T> EaseOutInBack<T>()
+            where T : struct, IComparable
+        {
+            return EaseOutInBack<T>(ValueOperations.For<T>());
+        }
+
+        public static ValueAnimation<T> EaseOutInBack<T>(IValueOperations<T> valueOperations)
+            where T : struct, IComparable
+        {
+            return new DualAnimation<T>(valueOperations, EaseOutBack<T>(valueOperations),
+                EaseInBack<T>(valueOperations)).GetValue;
+        }
         #endregion
 
         #region Elastic

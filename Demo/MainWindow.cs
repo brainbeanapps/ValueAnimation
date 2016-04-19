@@ -6,7 +6,7 @@ using BrainbeanApps.ValueAnimation;
 using System.Threading;
 using System.Diagnostics;
 
-public partial class MainWindow: Gtk.Window
+public partial class MainWindow : Gtk.Window
 {
     public const float Scale = 0.75f;
     public const int ValueSteps = 200;
@@ -85,6 +85,11 @@ public partial class MainWindow: Gtk.Window
             ConstructAnimation(ValueAnimations.EaseOutBounce<float>(), "bounce-out"),
             ConstructAnimation(ValueAnimations.EaseInOutBounce<float>(), "bounce-in-out"),
             ConstructAnimation(ValueAnimations.EaseOutInBounce<float>(), "bounce-out-in"),
+
+            ConstructAnimation(ValueAnimations.EaseInBack<float>(), "back-in"),
+            ConstructAnimation(ValueAnimations.EaseOutBack<float>(), "back-out"),
+            ConstructAnimation(ValueAnimations.EaseInOutBack<float>(), "back-in-out"),
+            ConstructAnimation(ValueAnimations.EaseOutInBack<float>(), "back-out-in"),
 
             ConstructAnimation(ValueAnimations.EaseInElastic<float>(), "elastic-in"),
             ConstructAnimation(ValueAnimations.EaseOutElastic<float>(), "elastic-out"),
