@@ -14,4 +14,7 @@
     <copyright>Copyright 2016 Brainbean Apps OU</copyright>
     <tags>animation tweening easing</tags>
   </metadata>
+  <files>
+    <file src="bin/Release/*.dll" target="lib/portable-net40+sl50+wp80+win+MonoAndroid10+MonoTouch10"/>
+  </files>
 </package>

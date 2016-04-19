@@ -1,3 +1,8 @@
+## NuGet
+/*.nupkg
+/packages/
+!packages/repositories.config
+
 ## https://github.com/github/gitignore/blob/master/VisualStudio.gitignore (partial)
 *.suo
 *.user
