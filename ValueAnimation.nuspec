@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BrainbeanApps.ValueAnimation</id>
+    <version>1.0.0</version>
+    <title>ValueAnimation</title>
+    <authors>Brainbean Apps</authors>
+    <owners>Brainbean Apps</owners>
+    <language>en-US</language>
+    <licenseUrl>https://github.com/brainbeanapps/ValueAnimation/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/brainbeanapps/ValueAnimation</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Tweening library for C# packaged as PCL</description>
+    <copyright>Copyright 2016 Brainbean Apps OU</copyright>
+    <tags>animation tweening easing</tags>
+  </metadata>
+</package>

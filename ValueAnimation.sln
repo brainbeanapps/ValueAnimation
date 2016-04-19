@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
+		ValueAnimation.nuspec = ValueAnimation.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{E64318EC-87B9-46C3-A98C-D9C26C56199D}"
@@ -198,6 +199,6 @@ Global
 		$27.IncludeStaticEntities = True
 		$0.VersionControlPolicy = $29
 		$29.inheritsSet = Mono
-		version = 1.0
+		version = 1.0.0
 	EndGlobalSection
 EndGlobal
